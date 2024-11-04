@@ -4,6 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.ConfigureDbContext(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.ConfigureSwagger();
 builder.Services.ConfigureCors();
