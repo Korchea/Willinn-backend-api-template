@@ -6,6 +6,7 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=SuperSecure123
+      - MSSQL_DATABASE=UserDb
     ports:
       - "1433:1433"
     networks:
@@ -16,7 +17,7 @@ services:
       context: .
       dockerfile: Api/Dockerfile
     environment:
-      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=UserDb;User Id=sa;Password=SuperSecure123;
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=UserDb;User Id=sa;Password=SuperSecure123;TrustServerCertificate=True;
     command: >
       sh -c "sleep 15 && dotnet ef database update && dotnet Api.dll"
     ports:

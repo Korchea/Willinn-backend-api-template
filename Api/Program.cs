@@ -14,10 +14,13 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+
+app.UseCors("CorsPolicy");
+
 // Configure the HTTP request pipeline.
 // if (app.Environment.IsDevelopment())
 // {
-    app.UseSwagger();
+app.UseSwagger();
     app.UseSwaggerUI();
 // }
 

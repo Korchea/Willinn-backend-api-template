@@ -10,11 +10,12 @@ public static class ServiceExtensions
         services.AddCors(options =>
         {
             options.AddPolicy("CorsPolicy",
-                builder => builder.AllowAnyOrigin()
+                builder => builder.WithOrigins("http://localhost:3000") // Especifica solo el origen necesario
                     .AllowAnyMethod()
                     .AllowAnyHeader());
         });
     }
+
 
     public static void ConfigureSwagger(this IServiceCollection services)
     {
