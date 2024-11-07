@@ -16,7 +16,7 @@ services:
       context: .
       dockerfile: Api/Dockerfile
     environment:
-      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=UserDb;User Id=sa;Password=SuperSecure123;
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=UserDb;User Id=sa;Password=SuperSecure123;TrustServerCertificate=true;
     command: >
       sh -c "dotnet ef database update && dotnet Api.dll"
     ports:
