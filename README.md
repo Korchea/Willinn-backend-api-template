@@ -6,6 +6,7 @@ Este proyecto es una aplicación backend desarrollada con .NET, que utiliza SQL 
 
 El proyecto se organiza de la siguiente manera:
 
+```plaintext
 . ├── Api/ # Código fuente de la aplicación backend
   │    ├── Controllers/ # Controladores de la API
   │    ├── Extensions/ # Extensiones del programa
@@ -26,6 +27,7 @@ El proyecto se organiza de la siguiente manera:
   ├── UnitTest/
   ├── docker-compose.yml # Configuración de los servicios Docker
   └── README.md # Archivo de documentación
+```
 
 ## Tecnologías Utilizadas
 
