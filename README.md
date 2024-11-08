@@ -144,14 +144,18 @@ Para asegurarse de que todo funcione como se espera:
 Revisar los logs: Observa los logs de sqlserver.configurator para confirmar que se haya ejecutado el script de inicialización sin problemas.
 
 Puedes ejecutar docker-compose logs sqlserver.configurator para ver el estado del proceso de configuración.
+
 Errores comunes: Si encuentras un error de inicio de sesión o conexión, es posible que sqlserver no esté completamente listo cuando sqlserver.configurator intenta conectarse.
 
 En caso de un error de conexión o autenticación, vuelve a ejecutar init.sql manualmente después de confirmar que sqlserver está activo.
+
 Ejecutar el script de configuración manualmente (si es necesario): Si encuentras problemas, sigue estos pasos para reejecutar init.sql:
+
 
 ```bash
 docker-compose exec sqlserver.configurator /opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P Sa_password123! -d master -i /docker-entrypoint-initdb.d/init.sql
 ```
+
 Esto ejecutará el script de configuración nuevamente una vez que el servidor SQL esté completamente disponible.
 
 Verificar la conexión: Si todo se ha configurado correctamente, accede a la API a través de http://localhost:8080/swagger/index.html y verifica que la conexión a la base de datos funcione.
