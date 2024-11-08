@@ -1,6 +1,6 @@
 # Prueba Tecnica Willinn Backend .NET y SQL Server
 
-Este proyecto es una aplicación backend desarrollada con .NET, que implementa un sistema de CRUD de usuarios con autenticación de inicio de sesión. Utiliza SQL Server como base de datos, y Docker y Docker Compose para facilitar la implementación y gestión de la aplicación en contenedores.
+Este proyecto es una aplicación backend desarrollada con .NET, que implementa un sistema de CRUD de usuarios con autenticación de inicio de sesión. Utiliza SQL Server como base de datos, y Docker Compose para facilitar la implementación y gestión de la aplicación en contenedores.
 
 ## Estructura del Proyecto
 
