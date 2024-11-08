@@ -78,9 +78,38 @@ Para iniciar la aplicación de forma local:
 dotnet run --project Api/Api.csproj
 ```
 
-Esto ejecutará la aplicación en `http://localhost:5000` de forma predeterminada. Asegúrate de que tu SQL Server está en ejecución y que tienes la base de datos y la tabla configuradas, o ejecuta una migración de datos usando los archivos en ./Data/Migrations si es necesario.
+Esto ejecutará la aplicación en `http://localhost:5000` de forma predeterminada. Asegúrate de que tu SQL Server está en ejecución y que tienes la base de datos y la tabla configuradas, o ejecuta una migración de datos usando los archivos en `./Data/Migrations` si es necesario.
 
-Para iniciar la aplicacion en Docker:
+### Para hacer la migracion tienes que 
+
+1. Abre la terminal en el directorio raíz del proyecto (donde está ubicado el archivo `.csproj` de la capa de datos).
+
+2. Asegúrate de que la cadena de conexión en `appsettings.json` o en el archivo de entorno de Docker (`docker-compose.yml`) esté configurada correctamente para apuntar al servidor de SQL Server.
+
+3. Ejecuta los siguientes comandos en la terminal:
+
+#### Paso 1: Agregar la migración inicial
+
+```bash
+dotnet ef migrations add InitialMigration --project Data --startup-project Api
+```
+Esto creará los archivos de migración en la carpeta Migrations dentro de la capa de datos (`Data`).
+
+#### Paso 2: Aplicar la migración a la base de datos
+
+```bash
+dotnet ef database update --project Data --startup-project Api
+```
+
+Este comando aplicará la migración a la base de datos configurada, creando las tablas y relaciones definidas en el modelo (`AppDbContext` y otros modelos de entidad).
+
+Nota: Asegúrate de tener `dotnet-ef` instalado. Si no lo tienes, puedes instalarlo ejecutando:
+
+```bash
+dotnet tool install --global dotnet-ef
+```
+
+### Para iniciar la aplicacion en Docker:
 
 ```bash
 docker-compose up --build
