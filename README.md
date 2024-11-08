@@ -82,7 +82,7 @@ El archivo `docker-compose.yml` define tres servicios:
    - Dependiendo del servicio `sqlserver`, garantiza que la base de datos esté disponible antes de que la aplicación backend intente conectarse.
    - El comando en este servicio ejecuta la actualización de la base de datos mediante `dotnet ef database update` y luego inicia la aplicación backend (`dotnet Api.dll`).
 
-## Redes y Volúmenes
+### Redes y Volúmenes
 
 - **Redes**:
   - El archivo define una red de puente llamada `app-network`, que permite la comunicación entre los contenedores de los diferentes servicios (sqlserver, sqlserver.configurator, backend).
