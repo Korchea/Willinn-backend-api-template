@@ -5,20 +5,44 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=SuperSecure123
+      - MSSQL_SA_PASSWORD=Sa_password123!
+      - MSSQL_PID=Developer
     ports:
       - "1433:1433"
     networks:
       - app-network
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P ${Sa_Password:-password123} -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      retries: 10
+      start_period: 10s
+      timeout: 3s
+  sqlserver.configurator:
+      image: mcr.microsoft.com/mssql-tools:latest
+      volumes:
+        - ./init:/docker-entrypoint-initdb.d
+        - ./wait-for-it.sh:/scripts/wait-for-it.sh
+      depends_on:
+       - sqlserver
+      command: >
+        bash -c "/scripts/wait-for-it.sh sqlserver:1433 --timeout=60 -- /bin/bash -c 'sleep 20 && /opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P Sa_password123! -d master -i /docker-entrypoint-initdb.d/init.sql';
+        echo 'All done!'"
+      networks:
+       - app-network
 
+
+  
   backend:
     build:
       context: .
       dockerfile: Api/Dockerfile
     environment:
-      - ConnectionStrings__DefaultConnection=Server=WillinnUserDb;Database=UserDb;User Id=sa;Password=SuperSecure123;
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=UserDb;User Id=sa;Password=Sa_password123!;TrustServerCertificate=true;
     command: >
-      sh -c "dotnet ef database update && dotnet Api.dll"
+      sh -c "/app/wait-for-it.sh sqlserver:1433 -- dotnet ef database update && dotnet Api.dll"
     ports:
       - "8080:8080"
     depends_on:
@@ -29,3 +53,5 @@ services:
 networks:
   app-network:
     driver: bridge
+volumes:
+  sqlserver_data: {}  # Definición del volumen
