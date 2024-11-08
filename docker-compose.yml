@@ -28,7 +28,7 @@ services:
       depends_on:
        - sqlserver
       command: >
-        bash -c "/scripts/wait-for-it.sh sqlserver:1433 --timeout=60 -- /bin/bash -c 'sleep 20 && /opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P Sa_password123! -d master -i /docker-entrypoint-initdb.d/init.sql';
+        bash -c "sleep 60 && /opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P Sa_password123! -d master -i /docker-entrypoint-initdb.d/init.sql;
         echo 'All done!'"
       networks:
        - app-network
@@ -55,3 +55,4 @@ networks:
     driver: bridge
 volumes:
   sqlserver_data: {}  # Definición del volumen
+
