@@ -137,7 +137,7 @@ Este comando crea las imágenes de Docker y ejecuta la aplicación. Una vez que 
 
 Consideraciones para la correcta inicialización de la base de datos:
 
-`En equipos con recursos limitados, puede suceder que el servicio de configuración (sqlserver.configurator) intente ejecutar el archivo init.sql antes de que el servicio de SQL Server (sqlserver) esté completamente listo. Esto podría causar errores de conexión en las consultas iniciales de configuración.`
+En equipos con recursos limitados, puede suceder que el servicio de configuración (sqlserver.configurator) intente ejecutar el archivo init.sql antes de que el servicio de SQL Server (sqlserver) esté completamente listo. Esto podría causar errores de conexión en las consultas iniciales de configuración.
 
 Para asegurarse de que todo funcione como se espera:
 
