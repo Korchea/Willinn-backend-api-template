@@ -7,6 +7,8 @@ builder.Services.ConfigureDbContext(builder.Configuration); // Configuración de
 builder.Services.AddControllers(); // Agrega los controladores para manejar las solicitudes
 builder.Services.ConfigureSwagger(); // Configuración de Swagger para la documentación de la API
 builder.Services.ConfigureCors(); // Configuración de CORS para permitir solicitudes desde orígenes específicos
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 // Crea la aplicación
 var app = builder.Build();
@@ -14,13 +16,10 @@ var app = builder.Build();
 // Configura CORS para que utilice la política "CorsPolicy"
 app.UseCors("CorsPolicy");
 
-// Configura el pipeline de manejo de solicitudes HTTP
-// Swagger solo para entornos de desarrollo
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 // Redirección HTTPS (descomentarlo si deseas redirigir todas las solicitudes a HTTPS)
 // app.UseHttpsRedirection();
