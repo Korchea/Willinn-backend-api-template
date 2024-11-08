@@ -129,7 +129,7 @@ Nota: Asegúrate de tener `dotnet-ef` instalado. Si no lo tienes, puedes instala
 ```bash
 dotnet tool install --global dotnet-ef
 ```
-Para iniciar la aplicación en Docker:
+### Para iniciar la aplicación en Docker:
 ```bash
 docker-compose up --build
 ```
