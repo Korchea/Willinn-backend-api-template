@@ -80,7 +80,7 @@ dotnet run --project Api/Api.csproj
 
 Esto ejecutará la aplicación en `http://localhost:5000` de forma predeterminada. Asegúrate de que tu SQL Server está en ejecución y que tienes la base de datos y la tabla configuradas, o ejecuta una migración de datos usando los archivos en `./Data/Migrations` si es necesario.
 
-### Para hacer la migracion tienes que 
+### Para hacer la migracion:
 
 1. Abre la terminal en el directorio raíz del proyecto (donde está ubicado el archivo `.csproj` de la capa de datos).
 
@@ -129,5 +129,5 @@ La aplicación crea una API REST que permite:
 
 ## Autor
 
-Template: Rodrigo Mato - [GitHub](https://github.com/RodrigoMato00)
-App: Guillermo Vega - [GitHub](https://github.com/Korchea)
+- Template: Rodrigo Mato - [GitHub](https://github.com/RodrigoMato00)
+- App: Guillermo Vega - [GitHub](https://github.com/Korchea)
